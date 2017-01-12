@@ -1,0 +1,37 @@
+#!yaml
+name: Push to Docker registry
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and push Docker image to Docker Hub (latest)
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/websvn:latest
+          build-args: |
+            WEBSVN_REFS=heads
+            WEBSVN_VERSION=master
+
+      - name: Build and push Docker image to Docker Hub (2.6.1)
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/websvn:2.6.1
+          build-args: |
+            WEBSVN_REFS=tags
+            WEBSVN_VERSION=2.6.1
