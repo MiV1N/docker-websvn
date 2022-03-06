@@ -11,7 +11,7 @@ RUN apt-get update \
     supervisor curl ca-certificates \
     subversion php php-fpm php-xml php-geshi php-mbstring php-pear \
     nkf \
-    nginx \
+    nginx-light \
  && apt-get -y clean \
  && pear Archive_Tar \
  && pear Text_Diff \
