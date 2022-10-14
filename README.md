@@ -20,10 +20,14 @@ Example Docker Compose file:
         ports:
             - "8003:80"
         environment:
-            - repository=svn://10.0.1.20/main
+            - repository=http://10.0.1.20/main
+            - username=miv1n
+            - pwd=miv1n
         restart: always
 
 - GitHUB  
 https://github.com/YoshihideShirai/docker-websvn
 - dockerhub  
 https://hub.docker.com/r/yoshihide1981/websvn
+- websvn(config详细配置)
+https://github.com/websvnphp/websvn/blob/master/include/distconfig.php
